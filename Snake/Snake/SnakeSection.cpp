@@ -1,5 +1,5 @@
 #include "SnakeSection.h"
-#include <raylib.h>
+#include "raylib.h"
 #include <iostream>
 
 
@@ -13,7 +13,7 @@ void SnakeSection::Render()
 		break;
 
 	case(SQUARE):
-		
+		DrawRectangle(m_locationX, m_locationX, 100, 100, RED);
 		break;
 
 	default:
@@ -28,6 +28,12 @@ void SnakeSection::Render()
 SHAPE SnakeSection::GetShape()
 {
 	return m_shape;
+}
+
+void SnakeSection::SetLocation(int x, int y)
+{
+	m_locationX = x;
+	m_locationY = y;
 }
 
 SnakeSection::SnakeSection(SHAPE shape) : m_shape(shape), m_locationX(), m_locationY()

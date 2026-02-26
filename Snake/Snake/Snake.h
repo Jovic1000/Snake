@@ -5,21 +5,22 @@
 
 enum SECTION_TYPE
 {
-	HEAD,
-	BODY
+	HEAD = 0,
+	BODY = 1
 };
 
 class Snake
 {
 public:
 
-	void SetUp();
 	void Render();
+	void AddToBody();
 
 	Snake(SHAPE shape);
 
 private:
 
+	SHAPE m_currentShape;
 	int m_snakeLength;
 	SnakeHead* m_head;
 	std::stack<SnakeSection>* m_snakeSections;

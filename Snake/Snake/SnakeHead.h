@@ -8,6 +8,7 @@ public:
 	void Render();
 	int GetLocationX();
 	int GetLocationY();
+	void SetLocation(int x, int y);
 
 private:
 

@@ -14,7 +14,9 @@ void SnakeHead::Render()
 		break;
 
 	case(SQUARE):
-		
+		DrawRectangle(m_locationX, m_locationX, 100, 100, RED);
+		DrawRectangle(m_locationX, m_locationX, 60, 60, WHITE);
+		DrawRectangle(m_locationX, m_locationX, 30, 30, BLACK);
 		break;
 
 	default:
@@ -31,4 +33,10 @@ int SnakeHead::GetLocationX()
 int SnakeHead::GetLocationY()
 {
 	return m_locationY;
+}
+
+void SnakeHead::SetLocation(int x, int y)
+{
+	m_locationX = x;
+	m_locationY = y;
 }
