@@ -1,4 +1,14 @@
-﻿  Grid.cpp
-  main.cpp
-  Generating Code...
-  Snake.vcxproj -> C:\Temp\Jasons Work\Snake\Snake\x64\Debug\Snake.exe
+﻿  main.cpp
+Apple.obj : error LNK2019: unresolved external symbol DrawCircle referenced in function "public: void __cdecl Apple::Generate(void)" (?Generate@Apple@@QEAAXXZ)
+SnakeHead.obj : error LNK2001: unresolved external symbol DrawCircle
+SnakeSection.obj : error LNK2001: unresolved external symbol DrawCircle
+Game.obj : error LNK2019: unresolved external symbol InitWindow referenced in function "public: void __cdecl Game::StartUp(void)" (?StartUp@Game@@QEAAXXZ)
+Game.obj : error LNK2019: unresolved external symbol SetTargetFPS referenced in function "public: void __cdecl Game::StartUp(void)" (?StartUp@Game@@QEAAXXZ)
+Grid.obj : error LNK2019: unresolved external symbol ClearBackground referenced in function "public: void __cdecl Grid::Render(void)" (?Render@Grid@@QEAAXXZ)
+Grid.obj : error LNK2019: unresolved external symbol BeginDrawing referenced in function "public: void __cdecl Grid::Render(void)" (?Render@Grid@@QEAAXXZ)
+Grid.obj : error LNK2019: unresolved external symbol EndDrawing referenced in function "public: void __cdecl Grid::Render(void)" (?Render@Grid@@QEAAXXZ)
+main.obj : error LNK2019: unresolved external symbol WindowShouldClose referenced in function main
+SnakeHead.obj : error LNK2019: unresolved external symbol DrawRectangle referenced in function "public: void __cdecl SnakeHead::Render(void)" (?Render@SnakeHead@@QEAAXXZ)
+SnakeSection.obj : error LNK2001: unresolved external symbol DrawRectangle
+E:\GitHub Clone Repository\Snake\Snake\Snake\raylib-5.5_win32_msvc16\lib\raylib.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+E:\GitHub Clone Repository\Snake\Snake\x64\Debug\Snake.exe : fatal error LNK1120: 8 unresolved externals
