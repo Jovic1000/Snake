@@ -11,12 +11,14 @@ public:
 	void FillApples();
 	void Eat();
 	void AddApple();
-	bool compareAppleLocations(int x, int y);
+	bool CompareAppleLocations(int x, int y);
+	std::list<Apple> GetApples();
 
 	Grid();
 
 private:
 
+	
 	std::list<Apple> m_apples;
 
 };

@@ -8,15 +8,15 @@ void SnakeHead::Render()
 	switch (GetShape())
 	{
 	case(CIRCLE):
-		DrawCircle(m_locationX, m_locationY, 100, RED);
-		DrawCircle(m_locationX, m_locationY, 60, WHITE);
-		DrawCircle(m_locationX, m_locationY, 30, BLACK);
+		DrawCircle(m_locationX, m_locationY, 50, RED);
+		DrawCircle(m_locationX, m_locationY, 20, WHITE);
+		DrawCircle(m_locationX, m_locationY, 10, BLACK);
 		break;
 
 	case(SQUARE):
-		DrawRectangle(m_locationX, m_locationX, 100, 100, RED);
-		DrawRectangle(m_locationX, m_locationX, 60, 60, WHITE);
-		DrawRectangle(m_locationX, m_locationX, 30, 30, BLACK);
+		DrawRectangle(m_locationX, m_locationX, 50, 50, RED);
+		DrawRectangle(m_locationX, m_locationX, 20, 20, WHITE);
+		DrawRectangle(m_locationX, m_locationX, 10, 10, BLACK);
 		break;
 
 	default:

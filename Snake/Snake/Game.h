@@ -7,7 +7,7 @@ class Game
 public:
 
 	void StartUp();
-	void Update();
+	void Update(char input);
 	void Render();
 
 
@@ -15,6 +15,7 @@ public:
 
 private:
 
+	int m_score;
 	Snake* m_snake;
 	Grid* m_grid;
 

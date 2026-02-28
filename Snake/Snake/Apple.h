@@ -1,9 +1,11 @@
 #pragma once
+
+class Grid;
 class Apple
 {
 public:
 
-	void Generate();
+	void Generate(Grid &grid);
 	void SetLcoation(int x, int y);
 	int GetLocationX();
 	int GetLocationY();

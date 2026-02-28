@@ -9,11 +9,11 @@ void SnakeSection::Render()
 	switch (GetShape())
 	{
 	case(CIRCLE):
-		DrawCircle(m_locationX, m_locationY, 100, RED);
+		DrawCircle(m_locationX, m_locationY, 50, RED);
 		break;
 
 	case(SQUARE):
-		DrawRectangle(m_locationX, m_locationX, 100, 100, RED);
+		DrawRectangle(m_locationX, m_locationX, 50, 50, RED);
 		break;
 
 	default:

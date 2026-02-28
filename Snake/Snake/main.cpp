@@ -1,19 +1,23 @@
 #include <iostream>
+#include <conio.h>
 #include "Game.h"
-#include <raylib.h>
+#include "raylib.h"
+
 
 int main()
 {
+	srand(time(NULL));
 	Game* game = new Game(CIRCLE);
 
 	game->StartUp();
-
+	
+	char input;
 	while (!WindowShouldClose())
 	{
-		game->Update();
-	}
+		input = GetKeyPressed();
 
-	system("pause");
+		game->Update(input);
+	}
 
 	delete game;
 	return 0;

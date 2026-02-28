@@ -3,21 +3,14 @@
 #include <iostream>
 #include <raylib.h>
 
-void Apple::Generate()
+void Apple::Generate(Grid &grid)
 {
-	Grid tempGrid;
-	do
-	{
-		m_LocationX = (((rand() % 10) + 1) * 10) - 50;
-		m_LocationY = (((rand() % 10) + 1) * 10) - 50;
-
-	} while (tempGrid.compareAppleLocations(m_LocationX, m_LocationY));
-	
-	
+	DrawCircle(m_LocationX, m_LocationY, 50, RED);
+	DrawCircle(m_LocationX + 10, m_LocationY + 10, 30, PINK);
 
 
-	DrawCircle(m_LocationX, m_LocationY, 100, RED);
-	DrawCircle(m_LocationX + 20, m_LocationY + 20, 60, PINK);
+	// debug:
+	/*std::cout << "Apple Location  X:" << m_LocationX << " | Y:" << m_LocationY << std::endl;*/
 }
 
 void Apple::SetLcoation(int x, int y)
