@@ -1,6 +1,5 @@
 #include "Game.h"
 #include <iostream>
-#include <string>
 #include <raylib.h>
 
 // Window Dimensions
@@ -11,11 +10,12 @@ void Game::StartUp()
 {
 
 	// makes the window resizable
-	SetConfigFlags(FLAG_WINDOW_RESIZABLE);
+	/*SetConfigFlags(FLAG_WINDOW_RESIZABLE);*/
 
 	// create main window & Set FPS to 60
 	InitWindow(GRID_WIDTH, GRID_HIGHT, " ('TEST') Snake Game! ");
-	SetTargetFPS(60);
+	SetTargetFPS(3);
+	m_snake->CreateSnake();
 	m_grid->FillApples();
 
 
@@ -23,29 +23,60 @@ void Game::StartUp()
 
 void Game::Update(char input)
 {
-	Render();
 
-	switch (toupper(input))
+	switch (input)
 	{
 	case('W'):
 		std::cout << "TESTER OUTPUT: <Snake Move UP>" << std::endl;
+		m_currentInput = input;
 		break;
 
 	case('S'):
 		std::cout << "TESTER OUTPUT: <Snake Move DOWN>" << std::endl;
+		m_currentInput = input;
 		break;
 
 	case('A'):
 		std::cout << "TESTER OUTPUT: <Snake Move LEFT>" << std::endl;
+		m_currentInput = input;
 		break;
 
 	case('D'):
 		std::cout << "TESTER OUTPUT: <Snake Move RIGHT>" << std::endl;
+		m_currentInput = input;
 		break;
 
 	default:
 		break;
 	}
+
+	switch (m_currentInput)
+	{
+	case('W'):
+		std::cout << "SYSTEM INFO: <Snake has moved UP>" << std::endl;
+		m_snake->MoveUP();
+		break;
+
+	case('S'):
+		std::cout << "SYSTEM INFO: <Snake has moved DOWN>" << std::endl;
+		m_snake->MoveDOWN();
+		break;
+
+	case('A'):
+		std::cout << "SYSTEM INFO: <Snake has moved LEFT>" << std::endl;
+		m_snake->MoveLEFT();
+		break;
+
+	case('D'):
+		std::cout << "SYSTEM INFO: <Snake has moved RIGHT>" << std::endl;
+		m_snake->MoveRIGHT();
+		break;
+
+	default:
+		break;
+	}
+
+	Render();
 }
 void Game::Render()
 {
@@ -55,6 +86,7 @@ void Game::Render()
 	DrawRectangle(0, 500, 500, 100, BLACK);
 
 	m_grid->Render();
+	m_snake->Render();
 	
 	DrawFPS(50,550);
 	

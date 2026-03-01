@@ -15,6 +15,7 @@ public:
 
 private:
 
+	char m_currentInput;
 	int m_score;
 	Snake* m_snake;
 	Grid* m_grid;

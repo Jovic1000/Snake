@@ -13,8 +13,16 @@ class Snake
 {
 public:
 
+	void CreateSnake();
 	void Render();
 	void AddToBody();
+
+	// movement
+	void MoveUP();
+	void MoveDOWN();
+	void MoveLEFT();
+	void MoveRIGHT();
+
 
 	Snake(SHAPE shape);
 
@@ -23,7 +31,7 @@ private:
 	SHAPE m_currentShape;
 	int m_snakeLength;
 	SnakeHead* m_head;
-	std::stack<SnakeSection>* m_snakeSections;
+	std::deque<SnakeSection> m_snakeSections;
 
 };
 

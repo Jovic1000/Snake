@@ -9,25 +9,42 @@ void SnakeSection::Render()
 	switch (GetShape())
 	{
 	case(CIRCLE):
-		DrawCircle(m_locationX, m_locationY, 50, RED);
+		DrawCircle(m_locationX, m_locationY, 50, BLUE);
 		break;
 
 	case(SQUARE):
-		DrawRectangle(m_locationX, m_locationX, 50, 50, RED);
+		DrawRectangle(m_locationX - 50, m_locationY - 50, 100, 100, BLUE);
 		break;
 
 	default:
 		std::cout << std::endl << "!!Shape ERROR - Check SnakeSection.h / SnakeSection.cpp!!" << std::endl << std::endl;
 		break;
 	}
-
-
-
 }
 
 SHAPE SnakeSection::GetShape()
 {
 	return m_shape;
+}
+
+int SnakeSection::GetLocationX()
+{
+	return m_locationX;
+}
+
+int SnakeSection::GetLocationY()
+{
+	return m_locationY;
+}
+
+int SnakeSection::GetPreLocationX()
+{
+	return m_preLocationX;
+}
+
+int SnakeSection::GetPreLocationY()
+{
+	return m_preLocationY;
 }
 
 void SnakeSection::SetLocation(int x, int y)
@@ -36,6 +53,12 @@ void SnakeSection::SetLocation(int x, int y)
 	m_locationY = y;
 }
 
-SnakeSection::SnakeSection(SHAPE shape) : m_shape(shape), m_locationX(), m_locationY()
+void SnakeSection::SetPreLocation(int x, int y)
+{
+	m_preLocationX = x;
+	m_preLocationY = y;
+}
+
+SnakeSection::SnakeSection(SHAPE shape) : m_shape(shape), m_locationX(), m_locationY(), m_preLocationX(), m_preLocationY()
 {
 }
