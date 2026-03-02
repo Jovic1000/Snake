@@ -10,6 +10,8 @@ public:
 	void Update(char input);
 	void Render();
 
+	void CheckOverlap();
+
 
 	Game(SHAPE snakeShape);
 

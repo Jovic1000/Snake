@@ -23,6 +23,7 @@ public:
 	void MoveLEFT();
 	void MoveRIGHT();
 
+	SnakeHead* GetHead();
 
 	Snake(SHAPE shape);
 

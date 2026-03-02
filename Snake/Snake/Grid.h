@@ -9,7 +9,7 @@ public:
 	void Render();
 	void Update();
 	void FillApples();
-	void Eat();
+	void Eat(Apple& apple);
 	void AddApple();
 	bool CompareAppleLocations(int x, int y);
 	std::list<Apple> GetApples();

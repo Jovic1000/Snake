@@ -32,7 +32,7 @@ void Grid::FillApples()
 		do
 		{
 			newApple->SetLcoation((((rand() % 5) + 1) * 100) - 50,
-				(((rand() % 5) + 1) * 100) - 50);
+				                 (((rand() % 5) + 1) * 100) - 50);
 
 		} while (CompareAppleLocations(newApple->GetLocationX(), newApple->GetLocationY()));
 
@@ -42,18 +42,19 @@ void Grid::FillApples()
 
 }
 
-void Grid::Eat()
+void Grid::Eat(Apple& apple)
 {
-	for (Apple apple : m_apples)
-	{
-		do
-		{
-			apple.SetLcoation((((rand() % 5) + 1) * 100) - 50,
-							 (((rand() % 5) + 1) * 100) - 50);
+	
+}
 
-		} while (CompareAppleLocations(apple.GetLocationX(), apple.GetLocationY()));
-	}
+void Grid::AddApple()
+{
+	Apple* newApple = new Apple();
 
+	newApple->SetLcoation((((rand() % 5) + 1) * 100) - 50,
+		                 (((rand() % 5) + 1) * 100) - 50);
+
+	m_apples.push_back(*newApple);
 }
 
 bool Grid::CompareAppleLocations(int x, int y)

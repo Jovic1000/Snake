@@ -76,6 +76,7 @@ void Game::Update(char input)
 		break;
 	}
 
+	CheckOverlap();
 	Render();
 }
 void Game::Render()
@@ -97,6 +98,24 @@ void Game::Render()
 	
 }
 
-Game::Game(SHAPE snakeShape) : m_snake(new Snake(snakeShape)), m_grid(new Grid()), m_score(1)
+void Game::CheckOverlap()
+{
+	for (Apple apple : m_grid->GetApples())
+	{
+		// checks if the location of the snakes head is equal to any of the apples
+		if (m_snake->GetHead()->GetLocationX() == apple.GetLocationX() && m_snake->GetHead()->GetLocationY() == apple.GetLocationY())
+		{
+			m_grid->Eat(apple);
+		}
+	}
+
+	if (m_grid->GetApples().size() != 5)
+	{
+		m_grid->AddApple();
+	}
+
+}
+
+Game::Game(SHAPE snakeShape) : m_snake(new Snake(snakeShape)), m_grid(new Grid()), m_score(1), m_currentInput(NULL)
 {
 }

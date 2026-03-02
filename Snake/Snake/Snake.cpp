@@ -134,6 +134,11 @@ void Snake::MoveRIGHT()
 	}
 }
 
+SnakeHead* Snake::GetHead()
+{
+	return m_head;
+}
+
 Snake::Snake(SHAPE shape) : m_snakeSections(), m_snakeLength(1), m_currentShape(shape), m_head(new SnakeHead(shape))
 {
 	
