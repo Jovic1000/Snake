@@ -16,106 +16,195 @@ void Game::StartUp()
 	InitWindow(GRID_WIDTH, GRID_HIGHT, " ('TEST') Snake Game! ");
 	SetTargetFPS(3);
 	m_snake->CreateSnake();
-	m_grid->FillApples();
+	m_grid->FillApples(m_snake);
 
 
 }
 
 void Game::Update(char input)
 {
-
-	switch (input)
+	
+	if (!IsGameOver())
 	{
-	case('W'):
-		std::cout << "TESTER OUTPUT: <Snake Move UP>" << std::endl;
-		m_currentInput = input;
-		break;
+		
+		switch (input)
+		{
+		case('W'):
+			std::cout << "TESTER OUTPUT: <Snake Move UP>" << std::endl;
+			m_currentInput = input;
+			break;
 
-	case('S'):
-		std::cout << "TESTER OUTPUT: <Snake Move DOWN>" << std::endl;
-		m_currentInput = input;
-		break;
+		case('S'):
+			std::cout << "TESTER OUTPUT: <Snake Move DOWN>" << std::endl;
+			m_currentInput = input;
+			break;
 
-	case('A'):
-		std::cout << "TESTER OUTPUT: <Snake Move LEFT>" << std::endl;
-		m_currentInput = input;
-		break;
+		case('A'):
+			std::cout << "TESTER OUTPUT: <Snake Move LEFT>" << std::endl;
+			m_currentInput = input;
+			break;
 
-	case('D'):
-		std::cout << "TESTER OUTPUT: <Snake Move RIGHT>" << std::endl;
-		m_currentInput = input;
-		break;
+		case('D'):
+			std::cout << "TESTER OUTPUT: <Snake Move RIGHT>" << std::endl;
+			m_currentInput = input;
+			break;
 
-	default:
-		break;
+		default:
+			break;
+		}
+
+		switch (m_currentInput)
+		{
+		case('W'):
+			std::cout << "SYSTEM INFO: <Snake has moved UP>" << std::endl;
+			m_snake->MoveUP();
+			break;
+
+		case('S'):
+			std::cout << "SYSTEM INFO: <Snake has moved DOWN>" << std::endl;
+			m_snake->MoveDOWN();
+			break;
+
+		case('A'):
+			std::cout << "SYSTEM INFO: <Snake has moved LEFT>" << std::endl;
+			m_snake->MoveLEFT();
+			break;
+
+		case('D'):
+			std::cout << "SYSTEM INFO: <Snake has moved RIGHT>" << std::endl;
+			m_snake->MoveRIGHT();
+			break;
+
+		default:
+			break;
+		}
+
+		Render();
+		CheckOverlap();
+		
 	}
-
-	switch (m_currentInput)
+	else
 	{
-	case('W'):
-		std::cout << "SYSTEM INFO: <Snake has moved UP>" << std::endl;
-		m_snake->MoveUP();
-		break;
+		BeginDrawing();
 
-	case('S'):
-		std::cout << "SYSTEM INFO: <Snake has moved DOWN>" << std::endl;
-		m_snake->MoveDOWN();
-		break;
+		if (m_endState == VICTORY)
+		{
+			ClearBackground(GOLD);
+			DrawText(TextFormat("CONGRATULATIONS!\n        YOU WIN\n    Your Score: %02i", m_score), 100, 250, 30, WHITE);
+		}
+		else if (m_endState == LOSE)
+		{
+			ClearBackground(RED);
+			DrawText(TextFormat("           BOOOO!\n         YOU LOSE\n      Your Score: %02i", m_score), 60, 250, 30, BLACK);
+		}
+		else
+		{
+			std::cout << "!END_STATE_ERROR! - CHECK Game.cpp/Game.h" << std::endl;
+		}
 
-	case('A'):
-		std::cout << "SYSTEM INFO: <Snake has moved LEFT>" << std::endl;
-		m_snake->MoveLEFT();
-		break;
-
-	case('D'):
-		std::cout << "SYSTEM INFO: <Snake has moved RIGHT>" << std::endl;
-		m_snake->MoveRIGHT();
-		break;
-
-	default:
-		break;
+		EndDrawing();
 	}
-
-	CheckOverlap();
-	Render();
 }
 void Game::Render()
 {
 
 	BeginDrawing();
 
-	DrawRectangle(0, 500, 500, 100, BLACK);
-
+	
+	// game screen
 	m_grid->Render();
 	m_snake->Render();
 	
+
+	// score board 
+	DrawRectangle(0, 500, 500, 100, BLACK);
 	DrawFPS(50,550);
-	
-	DrawText(TextFormat("Score:%03i", m_score), 370, 550, 20, WHITE);
-	DrawText(TextFormat("SNAKE"), 220, 550, 20, WHITE);
+	DrawText(TextFormat("Score:%02i", m_score), 370, 550, 20, WHITE);
+	DrawText("SNAKE", 220, 550, 20, WHITE);
 
 	EndDrawing();
 	
 }
 
-void Game::CheckOverlap()
+bool Game::IsGameOver()
 {
-	for (Apple apple : m_grid->GetApples())
+	if (m_snake->GetLength() == 25)
 	{
-		// checks if the location of the snakes head is equal to any of the apples
-		if (m_snake->GetHead()->GetLocationX() == apple.GetLocationX() && m_snake->GetHead()->GetLocationY() == apple.GetLocationY())
-		{
-			m_grid->Eat(apple);
-		}
+		m_endState = VICTORY;
+		return true;
 	}
-
-	if (m_grid->GetApples().size() != 5)
+	else if (m_snake->GetHead()->GetLocationX() < 50 || m_snake->GetHead()->GetLocationX() > 450)
 	{
-		m_grid->AddApple();
+		m_endState = LOSE;
+		return true;
+	}
+	else if (m_snake->GetHead()->GetLocationY() < 50 || m_snake->GetHead()->GetLocationY() > 450)
+	{
+		m_endState = LOSE;
+		return true;
+	}
+	else
+	{
+		for (SnakeSection section : m_snake->GetBody())
+		{
+			if ((section.GetLocationX() == m_snake->GetHead()->GetLocationX()) && (section.GetLocationY() == m_snake->GetHead()->GetLocationY()))
+			{
+				m_endState = LOSE;
+				return true;
+			}
+		}
+
+		return false;
+
 	}
 
 }
 
-Game::Game(SHAPE snakeShape) : m_snake(new Snake(snakeShape)), m_grid(new Grid()), m_score(1), m_currentInput(NULL)
+
+
+void Game::CheckOverlap()
+{
+
+	int snakeX = m_snake->GetHead()->GetLocationX();
+	int snakeY = m_snake->GetHead()->GetLocationY();
+
+	bool loop = true;
+	int count = 0;
+
+	while (loop)
+	{
+		Apple tempApple = m_grid->GetPtrApples()->front();
+
+		// checks if the location of the snakes head is equal to any of the apples
+		if (snakeX == tempApple.GetLocationX() && snakeY == tempApple.GetLocationY())
+		{
+			m_grid->Eat(tempApple);
+			m_score++;
+			m_snake->AddToBody();
+			loop = false;
+		}
+		else if (count == 6)
+		{
+			loop = false;
+		}
+		else
+		{
+			m_grid->GetPtrApples()->pop_front();
+
+			m_grid->GetPtrApples()->push_back(tempApple);
+			
+			count++;
+		}
+	}
+	
+
+	if (m_grid->GetPtrApples()->size() != 5)
+	{
+		m_grid->AddApple(m_snake);
+	}
+
+}
+
+Game::Game(SHAPE snakeShape) : m_snake(new Snake(snakeShape)), m_grid(new Grid()), m_score(1), m_currentInput(NULL), m_endState()
 {
 }

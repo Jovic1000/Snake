@@ -2,17 +2,17 @@
 #include <list>
 #include "Apple.h"
 
+class Snake;
 class Grid
 {
 public:
 
 	void Render();
-	void Update();
-	void FillApples();
-	void Eat(Apple& apple);
-	void AddApple();
-	bool CompareAppleLocations(int x, int y);
-	std::list<Apple> GetApples();
+	void FillApples(Snake* snake);
+	void Eat(Apple apple);
+	void AddApple(Snake* snake);
+	bool CompareAppleLocations(int x, int y, Snake* snake);
+	std::list<Apple>* GetPtrApples();
 
 	Grid();
 

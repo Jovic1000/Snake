@@ -16,6 +16,7 @@ public:
 	void CreateSnake();
 	void Render();
 	void AddToBody();
+	bool CompareBodyLocations(int x, int y);
 
 	// movement
 	void MoveUP();
@@ -24,6 +25,8 @@ public:
 	void MoveRIGHT();
 
 	SnakeHead* GetHead();
+	std::deque<SnakeSection> GetBody();
+	int GetLength();
 
 	Snake(SHAPE shape);
 

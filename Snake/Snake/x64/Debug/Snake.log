@@ -1,33 +1,4 @@
-﻿  Game.cpp
-  Grid.cpp
-D:\Visual studio instalation\VC\Tools\MSVC\14.44.35207\include\xmemory(2338,28): error C2676: binary '==': 'Apple' does not define this operator or a conversion to a type acceptable to the predefined operator
-  (compiling source file 'Grid.cpp')
-      D:\Visual studio instalation\VC\Tools\MSVC\14.44.35207\include\xmemory(1050,30):
-      could be 'bool std::operator ==(const std::allocator<_Ty> &,const std::allocator<_Other> &) noexcept'
-          D:\Visual studio instalation\VC\Tools\MSVC\14.44.35207\include\xmemory(2338,19):
-          'bool std::operator ==(const std::allocator<_Ty> &,const std::allocator<_Other> &) noexcept': could not deduce template argument for 'const std::allocator<_Ty> &' from 'Apple'
-      D:\Visual studio instalation\VC\Tools\MSVC\14.44.35207\include\xutility(4458,30):
-      or       'bool std::operator ==(const std::move_iterator<_Iter> &,const std::move_iterator<_Iter2> &) noexcept(<expr>)'
-          D:\Visual studio instalation\VC\Tools\MSVC\14.44.35207\include\xmemory(2338,19):
-          'bool std::operator ==(const std::move_iterator<_Iter> &,const std::move_iterator<_Iter2> &) noexcept(<expr>)': could not deduce template argument for 'const std::move_iterator<_Iter> &' from 'Apple'
-      D:\Visual studio instalation\VC\Tools\MSVC\14.44.35207\include\xutility(1896,30):
-      or       'bool std::operator ==(const std::reverse_iterator<_BidIt> &,const std::reverse_iterator<_BidIt2> &) noexcept(<expr>)'
-          D:\Visual studio instalation\VC\Tools\MSVC\14.44.35207\include\xmemory(2338,19):
-          'bool std::operator ==(const std::reverse_iterator<_BidIt> &,const std::reverse_iterator<_BidIt2> &) noexcept(<expr>)': could not deduce template argument for 'const std::reverse_iterator<_BidIt> &' from 'Apple'
-      D:\Visual studio instalation\VC\Tools\MSVC\14.44.35207\include\utility(503,27):
-      or       'bool std::operator ==(const std::pair<_Ty1,_Ty2> &,const std::pair<_Uty1,_Uty2> &)'
-          D:\Visual studio instalation\VC\Tools\MSVC\14.44.35207\include\xmemory(2338,19):
-          'bool std::operator ==(const std::pair<_Ty1,_Ty2> &,const std::pair<_Uty1,_Uty2> &)': could not deduce template argument for 'const std::pair<_Ty1,_Ty2> &' from 'Apple'
-      D:\Visual studio instalation\VC\Tools\MSVC\14.44.35207\include\xmemory(2338,28):
-      the template instantiation context (the oldest one first) is
-          E:\GitHub Clone Repository\Snake\Snake\Snake\Snake\Grid.cpp(47,22):
-          see reference to function template instantiation '_FwdIt std::remove<std::_List_iterator<std::_List_val<std::_List_simple_types<_Ty>>>,Apple>(_FwdIt,const _FwdIt,const _Ty &)' being compiled
-          with
-          [
-              _FwdIt=std::_List_iterator<std::_List_val<std::_List_simple_types<Apple>>>,
-              _Ty=Apple
-          ]
-  
-  main.cpp
-E:\GitHub Clone Repository\Snake\Snake\Snake\Snake\main.cpp(10,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+﻿  SnakeHead.cpp
+  SnakeSection.cpp
   Generating Code...
+  Snake.vcxproj -> E:\GitHub Clone Repository\Snake\Snake\Snake\x64\Debug\Snake.exe

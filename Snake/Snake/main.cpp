@@ -8,7 +8,7 @@
 int main()
 {
 	srand(time(NULL));
-	Game* game = new Game(SQUARE);
+	Game* game = new Game(CIRCLE);
 
 	game->StartUp();
 	

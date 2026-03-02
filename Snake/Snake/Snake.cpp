@@ -35,6 +35,21 @@ void Snake::AddToBody()
 	}
 
 	m_snakeSections.push_back(newSection);
+
+	m_snakeLength++;
+}
+
+bool Snake::CompareBodyLocations(int x, int y)
+{
+	for (SnakeSection section : m_snakeSections)
+	{
+		if (section.GetLocationX() == x && section.GetLocationY() == y)
+		{
+			return true;
+		}
+	}
+
+	return false;
 }
 
 void Snake::MoveUP()
@@ -57,7 +72,7 @@ void Snake::MoveUP()
 
 		section.SetLocation(tempSection.GetLocationX(), tempSection.GetLocationY());
 
-		tempSection = section;
+		tempSection.SetLocation(section.GetPreLocationX(), section.GetPreLocationY());
 	}
 
 }
@@ -82,7 +97,7 @@ void Snake::MoveDOWN()
 
 		section.SetLocation(tempSection.GetLocationX(), tempSection.GetLocationY());
 
-		tempSection = section;
+		tempSection.SetLocation(section.GetPreLocationX(), section.GetPreLocationY());
 	}
 }
 
@@ -106,7 +121,7 @@ void Snake::MoveLEFT()
 
 		section.SetLocation(tempSection.GetLocationX(), tempSection.GetLocationY());
 
-		tempSection = section;
+		tempSection.SetLocation(section.GetPreLocationX(), section.GetPreLocationY());
 	}
 }
 
@@ -130,13 +145,23 @@ void Snake::MoveRIGHT()
 
 		section.SetLocation(tempSection.GetLocationX(), tempSection.GetLocationY());
 
-		tempSection = section;
+		tempSection.SetLocation(section.GetPreLocationX(), section.GetPreLocationY());
 	}
 }
 
 SnakeHead* Snake::GetHead()
 {
 	return m_head;
+}
+
+std::deque<SnakeSection> Snake::GetBody()
+{
+	return m_snakeSections;
+}
+
+int Snake::GetLength()
+{
+	return m_snakeLength;
 }
 
 Snake::Snake(SHAPE shape) : m_snakeSections(), m_snakeLength(1), m_currentShape(shape), m_head(new SnakeHead(shape))
