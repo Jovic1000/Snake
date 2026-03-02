@@ -9,7 +9,7 @@ int numberOfApples = 5;
 
 void Grid::Render()
 {
-	ClearBackground(GREEN);
+	ClearBackground(DARKGREEN);
 
 	for (Apple apple : m_apples)
 	{
@@ -67,18 +67,16 @@ void Grid::AddApple(Snake* snake)
 {
 	Apple* newApple = new Apple();
 	
+
 	do
 	{ 
-		if (snake->GetLength() == 44)
-		{
-			std::cout << "hi";
-		}
+		std::cout << "check" << std::endl;
 		newApple->SetLcoation((((rand() % 5) + 1) * 100) - 50,
 			(((rand() % 5) + 1) * 100) - 50);
 		                                                                                                       
-	} while (CompareAppleLocations(newApple->GetLocationX(), newApple->GetLocationY(), snake)); // <- max amount of spaces in the grid
+	} while (CompareAppleLocations(newApple->GetLocationX(), newApple->GetLocationY(), snake) && snake->GetLength() <= 20); // <- max amount of spaces in the grid
 
-	if (snake->GetLength() < 20)
+	if (snake->GetLength() <= 20)
 	{
 		m_apples.push_back(*newApple);
 	}
@@ -87,9 +85,9 @@ void Grid::AddApple(Snake* snake)
 bool Grid::CompareAppleLocations(int x, int y, Snake* snake)
 {
 	
-	for (int i = 50; i < 1000; i += 100)
+	for (int i = 50; i < 450; i += 100)
 	{
-		for (int j = 50; j < 1000; j += 100)
+		for (int j = 50; j < 450; j += 100)
 		{
 			for (Apple apple : m_apples)
 			{

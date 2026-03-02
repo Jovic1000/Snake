@@ -8,8 +8,13 @@
 int main()
 {
 	srand(time(NULL));
+
+	// decides what the shape of the nake will be (CIRCLE or SQUARE)
+	//                       ||
+	//                       \/
 	Game* game = new Game(CIRCLE);
 
+	// sets up everthing for the start of the game
 	game->StartUp();
 	
 	char input;

@@ -6,8 +6,9 @@
 void Apple::Generate(Grid &grid)
 {
 	DrawCircle(m_LocationX, m_LocationY, 50, RED);
-	DrawCircle(m_LocationX + 10, m_LocationY + 10, 30, PINK);
-
+	DrawCircle(m_LocationX + 20, m_LocationY + 20, 10, PINK);
+	DrawRectangle(m_LocationX - 5, m_LocationY - 60, 10, 20, BROWN);
+	DrawCircle(m_LocationX - 5, m_LocationY - 40, 7.5f, GREEN);
 
 	// debug:
 	/*std::cout << "Apple Location  X:" << m_LocationX << " | Y:" << m_LocationY << std::endl;*/

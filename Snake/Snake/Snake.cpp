@@ -16,13 +16,12 @@ void Snake::CreateSnake()
 
 void Snake::Render()
 {
-	m_head->Render();
-
 	for (SnakeSection section : m_snakeSections)
 	{
 		section.Render();
 	}
 
+	m_head->Render();
 }
 
 void Snake::AddToBody()

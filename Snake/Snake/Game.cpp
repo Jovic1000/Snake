@@ -26,33 +26,46 @@ void Game::Update(char input)
 	
 	if (!IsGameOver())
 	{
-		
+		// checks if the players input is a direction the snake can go in and then sets the input to stay as that direction
 		switch (input)
 		{
 		case('W'):
-			std::cout << "TESTER OUTPUT: <Snake Move UP>" << std::endl;
-			m_currentInput = input;
+			if (m_currentInput != 'S')
+			{
+				std::cout << "TESTER OUTPUT: <Snake Move UP>" << std::endl;
+				m_currentInput = input;
+			}
 			break;
 
 		case('S'):
-			std::cout << "TESTER OUTPUT: <Snake Move DOWN>" << std::endl;
-			m_currentInput = input;
+			if (m_currentInput != 'W')
+			{
+				std::cout << "TESTER OUTPUT: <Snake Move DOWN>" << std::endl;
+				m_currentInput = input;
+			}
 			break;
 
 		case('A'):
-			std::cout << "TESTER OUTPUT: <Snake Move LEFT>" << std::endl;
-			m_currentInput = input;
+			if (m_currentInput != 'D')
+			{
+				std::cout << "TESTER OUTPUT: <Snake Move LEFT>" << std::endl;
+				m_currentInput = input;
+			}
 			break;
 
 		case('D'):
-			std::cout << "TESTER OUTPUT: <Snake Move RIGHT>" << std::endl;
-			m_currentInput = input;
+			if (m_currentInput != 'A')
+			{
+				std::cout << "TESTER OUTPUT: <Snake Move RIGHT>" << std::endl;
+				m_currentInput = input;
+			}
 			break;
 
 		default:
 			break;
 		}
 
+		// the movement for the snake
 		switch (m_currentInput)
 		{
 		case('W'):
@@ -79,12 +92,15 @@ void Game::Update(char input)
 			break;
 		}
 
+
+		// the visuals and checks after the movement
 		Render();
 		CheckOverlap();
 		
 	}
 	else
 	{
+		// Game Over Screens
 		BeginDrawing();
 
 		if (m_endState == VICTORY)
@@ -128,7 +144,7 @@ void Game::Render()
 
 bool Game::IsGameOver()
 {
-	if (m_snake->GetLength() == 25)
+	if (m_snake->GetLength() == 24)
 	{
 		m_endState = VICTORY;
 		return true;
@@ -145,6 +161,7 @@ bool Game::IsGameOver()
 	}
 	else
 	{
+		// loops through all the sections of the snake to see if they overlap with the head
 		for (SnakeSection section : m_snake->GetBody())
 		{
 			if ((section.GetLocationX() == m_snake->GetHead()->GetLocationX()) && (section.GetLocationY() == m_snake->GetHead()->GetLocationY()))
@@ -153,6 +170,7 @@ bool Game::IsGameOver()
 				return true;
 			}
 		}
+
 
 		return false;
 
@@ -183,7 +201,7 @@ void Game::CheckOverlap()
 			m_snake->AddToBody();
 			loop = false;
 		}
-		else if (count == 6)
+		else if (count == 5)
 		{
 			loop = false;
 		}
