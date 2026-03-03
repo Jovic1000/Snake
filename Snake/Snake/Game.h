@@ -32,5 +32,9 @@ private:
 	Snake* m_snake;
 	Grid* m_grid;
 
+
+	float m_timer;
+	float m_movementInterval;
+
 };
 

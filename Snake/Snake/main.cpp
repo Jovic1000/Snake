@@ -12,7 +12,7 @@ int main()
 	// decides what the shape of the nake will be (CIRCLE or SQUARE)
 	//                       ||
 	//                       \/
-	Game* game = new Game(CIRCLE);
+	Game* game = new Game(SQUARE);
 
 	// sets up everthing for the start of the game
 	game->StartUp();
@@ -21,8 +21,8 @@ int main()
 	while (!WindowShouldClose())
 	{
 		input = GetKeyPressed();
-
 		game->Update(toupper(input));
+		
 	}
 
 	delete game;

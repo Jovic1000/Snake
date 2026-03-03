@@ -14,7 +14,7 @@ void Game::StartUp()
 
 	// create main window & Set FPS to 60
 	InitWindow(GRID_WIDTH, GRID_HIGHT, " ('TEST') Snake Game! ");
-	SetTargetFPS(3);
+	SetTargetFPS(60);
 	m_snake->CreateSnake();
 	m_grid->FillApples(m_snake);
 
@@ -65,32 +65,42 @@ void Game::Update(char input)
 			break;
 		}
 
-		// the movement for the snake
-		switch (m_currentInput)
+		float dt = GetFrameTime();
+		m_timer += dt;
+
+		if (m_timer >= m_movementInterval)
 		{
-		case('W'):
-			std::cout << "SYSTEM INFO: <Snake has moved UP>" << std::endl;
-			m_snake->MoveUP();
-			break;
+			// the movement for the snake
+			switch (m_currentInput)
+			{
+			case('W'):
+				std::cout << "SYSTEM INFO: <Snake has moved UP>" << std::endl;
+				m_snake->MoveUP();
+				break;
 
-		case('S'):
-			std::cout << "SYSTEM INFO: <Snake has moved DOWN>" << std::endl;
-			m_snake->MoveDOWN();
-			break;
+			case('S'):
+				std::cout << "SYSTEM INFO: <Snake has moved DOWN>" << std::endl;
+				m_snake->MoveDOWN();
+				break;
 
-		case('A'):
-			std::cout << "SYSTEM INFO: <Snake has moved LEFT>" << std::endl;
-			m_snake->MoveLEFT();
-			break;
+			case('A'):
+				std::cout << "SYSTEM INFO: <Snake has moved LEFT>" << std::endl;
+				m_snake->MoveLEFT();
+				break;
 
-		case('D'):
-			std::cout << "SYSTEM INFO: <Snake has moved RIGHT>" << std::endl;
-			m_snake->MoveRIGHT();
-			break;
+			case('D'):
+				std::cout << "SYSTEM INFO: <Snake has moved RIGHT>" << std::endl;
+				m_snake->MoveRIGHT();
+				break;
 
-		default:
-			break;
+			default:
+				break;
+			}
+
+			m_timer -= m_movementInterval;
 		}
+
+		
 
 
 		// the visuals and checks after the movement
@@ -225,4 +235,6 @@ void Game::CheckOverlap()
 
 Game::Game(SHAPE snakeShape) : m_snake(new Snake(snakeShape)), m_grid(new Grid()), m_score(1), m_currentInput(NULL), m_endState()
 {
+	m_timer = 0.0f;
+	m_movementInterval = 0.5f;
 }
